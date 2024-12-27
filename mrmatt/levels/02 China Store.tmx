@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<map version="1.0" orientation="orthogonal" width="31" height="18" tilewidth="32" tileheight="32">
+  <properties>
+    <property name="Title" value="China Store"/>
+  </properties>
+  <tileset source="MrMatt.tsx" firstgid="1"/>
+  <layer name="Tile Layer 1" width="31" height="18">
+    <data compression="zlib" encoding="base64">eJztlEEOwCAIBE2VpPb/D24PPRiywrZqSJoe5iQwElBJKUmHfFFuNoLqnBeFFYfcuSHCXSa5KyA7biHd2jXDzfbtuRFtfQGzYXdv1N2r+XX3KE/v4vX9Fu2x/rPVbhSzys2A3reFzj8C3TPmwu7m745nJzkBUbIGuA==</data>
+  </layer>
+</map>

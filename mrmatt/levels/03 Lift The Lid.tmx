@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<map version="1.0" orientation="orthogonal" width="31" height="18" tilewidth="32" tileheight="32">
+  <properties>
+    <property name="Title" value="Lift The Lid"/>
+  </properties>
+  <tileset source="MrMatt.tsx" firstgid="1"/>
+  <layer name="Tile Layer 1" width="31" height="18">
+    <data compression="zlib" encoding="base64">eJzNlEsOgDAIRJtWFnr/A6uJTSZkgKluXExi5PMKlFprzR7tRP3SCGz7Y7tjN/g2l3Pavc3A5tWBHcV5difCnCvcyWY+m8BmMSr3C9vnVGpeVZVnnimrgZ21Q2zUE1b3cGL/POcre7VnmAvnkbFnr1U2u/+KIvZI2EpepSeMjTNjd63iVb3G+pQaVmpVfdmdje5zJb93yryV3Y7eXSO+rKZoL7N3Q90nX2t2VmS/6UnFVt/CjK3MTvWL9vvW8SL+jzoBnwIHKw==</data>
+  </layer>
+</map>

@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<map version="1.0" orientation="orthogonal" width="31" height="18" tilewidth="32" tileheight="32">
+  <properties>
+    <property name="Title" value="Noisy Bunch"/>
+  </properties>
+  <tileset source="MrMatt.tsx" firstgid="1"/>
+  <layer name="Tile Layer 1" width="31" height="18">
+    <data compression="zlib" encoding="base64">eJxjYmBgYAJiTjIxExJmQeMTK0cLuzmRaHx2s5KJCfmNE48csj5yMDX8zUEmpkZ8UwMPJbuZqYjJ8RtyXmGFmkNtfw9Vu8nNg4Ty50DajW7HqN2Dw25SMCX5hBi9uOoySuymBsZlNwcSzQXEAOkmB0A=</data>
+  </layer>
+</map>

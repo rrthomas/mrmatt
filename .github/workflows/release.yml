@@ -17,7 +17,9 @@ jobs:
         with:
           python-version: "3.12"
       - name: Install non-Python build dependencies
-        run: sudo apt-get -y install gettext
+        run: |
+          sudo apt-get -y install gettext
+          npm install -g pyright
       - name: Install Python dependencies
         run: pip install tox build chambercourt
       - name: Build
@@ -56,45 +58,46 @@ jobs:
         if: ${{ matrix.os == 'windows-latest' }}
         run: |
           nuget install Gettext.Tools -Version 0.22.4 -OutputDirectory c:\nuget;
-          Add-Content $env:GITHUB_PATH "C:\nuget\Gettext.Tools.0.22.4\tools\bin";
-          nuget install Magick.NET-Q16-AnyCPU -Version 14.3.0 -OutputDirectory c:\nuget;
-          Add-Content $env:GITHUB_PATH "C:\nuget\Magic.NET-Q16-AnyCPU.14.3.0\tools\bin"
+          Add-Content $env:GITHUB_PATH "C:\nuget\Gettext.Tools.0.22.4\tools\bin"
+      - name: Install pyright
+        run: npm install -g pyright
       - name: Install Python dependencies
         run: pip install tox build setuptools chambercourt
-      - name: Install additional dependencies for binary builds
-        run: pip install pyinstaller
       - name: Build
         run: make dist
       - name: Build the executable (Ubuntu)
         if: ${{ matrix.os == 'ubuntu-20.04' }}
         run: |
-          PYTHONPATH=. pyinstaller --noconfirm --onefile --windowed --name wincoll-${{ runner.os }}-${{ runner.arch }} --copy-metadata wincoll --add-data "wincoll/*.png:wincoll/" --add-data "wincoll/*.ttf:wincoll/" --add-data "wincoll/levels:wincoll/levels" --add-data "wincoll/locale:wincoll/locale" wincoll/__main__.py
-          ./dist/wincoll-${{ runner.os }}-${{ runner.arch }} --help
+          pip install pyinstaller
+          PYTHONPATH=. pyinstaller --noconfirm --onefile --windowed --name mrmatt-${{ runner.os }}-${{ runner.arch }} --copy-metadata mrmatt --add-data "mrmatt/*.ttf:mrmatt/" --add-data "mrmatt/levels:mrmatt/levels" --add-data "mrmatt/locale:mrmatt/locale" mrmatt/__main__.py
+          ./dist/mrmatt-${{ runner.os }}-${{ runner.arch }} --help
       - name: Build the executable (macOS)
         if: ${{ matrix.os == 'macos-13' || matrix.os == 'macos-latest' }}
         run: |
-          ./make-macos-icns ./wincoll/levels/Hero.png wincoll.iconset
-          pyi-makespec --windowed --name WinColl --icon wincoll.icns --copy-metadata wincoll --add-data "wincoll/*.png:wincoll/" --add-data "wincoll/*.ttf:wincoll/" --add-data "wincoll/levels:wincoll/levels" --add-data "wincoll/locale:wincoll/locale" wincoll/__main__.py
+          pip install pyinstaller
+          ./make-macos-icns ./mrmatt/levels/Hero.png mrmatt.iconset
+          pyi-makespec --windowed --name MrMatt --icon mrmatt.icns --copy-metadata mrmatt --add-data "mrmatt/*.ttf:mrmatt/" --add-data "mrmatt/levels:mrmatt/levels" --add-data "mrmatt/locale:mrmatt/locale" mrmatt/__main__.py
           export version=$(grep version pyproject.toml)
-          sed -i '' -e "s/\(name='WinColl.app'\)/\1,\n    $version/" wincoll.spec
-          PYTHONPATH=. pyinstaller --noconfirm wincoll.spec
+          sed -i '' -e "s/\(name='MrMatt.app'\)/\1,\n    $version/" mrmatt.spec
+          PYTHONPATH=. pyinstaller --noconfirm mrmatt.spec
           brew install create-dmg
           mkdir dmg-folder
-          mv dist/wincoll.app dmg-folder/
-          create-dmg --volname "WinColl ${{ github.ref_name }}" ./dist/wincoll-${{ runner.os }}-${{ runner.arch }}.dmg dmg-folder/
+          mv dist/mrmatt.app dmg-folder/
+          create-dmg --volname "MrMatt ${{ github.ref_name }}" ./dist/mrmatt-${{ runner.os }}-${{ runner.arch }}.dmg dmg-folder/
       - name: Build the executable (Windows)
         if: ${{ matrix.os == 'windows-latest' }}
         run: |
-          pip install cx_Freeze
-          convert chambercourt/app-icon.png app-icon.ico
+          pip install cx_Freeze Pillow
+          python convert-image mrmatt/levels/app-icon.png app-icon.ico
           cxfreeze bdist_msi
+          mv dist/*.msi dist/mrmatt-win64.msi
       - name: Upload the binary (Ubuntu and macOS)
         if: ${{ matrix.os != 'windows-latest' }}
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ github.token }}
           tag: ${{ github.ref }}
-          file: ./dist/wincoll-${{ runner.os }}-${{ runner.arch }}*
+          file: ./dist/mrmatt-${{ runner.os }}-${{ runner.arch }}*
           file_glob: true
       - name: Upload the binary (Windows)
         if: ${{ matrix.os == 'windows-latest' }}
@@ -102,16 +105,5 @@ jobs:
         with:
           repo_token: ${{ github.token }}
           tag: ${{ github.ref }}
-          file: ./dist/wincoll*.msi
-          file_glob: true
-      - name: Build the RISC OS distribution
-        if: ${{ matrix.os == 'ubuntu-20.04' }}
-        run: ./dist-riscos
-      - name: Upload the RISC OS distribution
-        if: ${{ matrix.os == 'ubuntu-20.04' }}
-        uses: svenstaro/upload-release-action@v2
-        with:
-          repo_token: ${{ github.token }}
-          tag: ${{ github.ref }}
-          file: ./dist/wincoll-riscos.zip
+          file: ./dist/mrmatt*.msi
           file_glob: true
