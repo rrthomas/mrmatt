@@ -17,7 +17,7 @@ import tmxlib as tmx
 
 # Command-line arguments
 parser = argparse.ArgumentParser(
-    description="Convert plain text Mr Matt levels to Tiled .tmx format.",
+    description="Convert plain text Mr Matt level packs to Tiled .tmx format.",
 )
 parser.add_argument(
     "-V",
@@ -26,7 +26,7 @@ parser.add_argument(
     version="%(prog)s 0.1 (27 Dec 2024) by Reuben Thomas <rrt@sc3d.org>",
 )
 parser.add_argument(
-    "mrmatt_file", metavar="MR-MATT-LEVEL", help="plain text MrMatt level file"
+    "mrmatt_file", metavar="MR-MATT-LEVELS", help="plain text MrMatt levels file"
 )
 parser.add_argument(
     "tiled_directory", metavar="DIRECTORY", help="directory in which to put Tiled files"
