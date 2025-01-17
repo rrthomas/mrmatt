@@ -52,7 +52,7 @@ class MrmattGame(Game[Tile]):
 
     @staticmethod
     def description() -> str:
-        return _("Collect all the food while digging through earth dodging rocks.")
+        return _("Collect all the apples while digging through earth dodging rocks.")
 
     @staticmethod
     def instructions() -> str:
@@ -70,17 +70,6 @@ Bombs explode when dropped on a rock or
 another bomb, destroying it.
 Boxes can hold up to 3 things that fall
 into them, after which they disappear.
-
-     Z/X - Left/Right   '/? - Up/Down
-     or use the arrow keys to move
-         S/L - Save/load position
-     R - Restart level  Q - Quit game
-         F11 - toggle full screen
-
-
- (choose with movement keys and digits)
-
-     Press the space bar to play!
 """
         # fmt: on
         )
