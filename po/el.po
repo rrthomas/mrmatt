@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-17 18:35+0000\n"
+"POT-Creation-Date: 2025-01-17 19:25+0000\n"
 "PO-Revision-Date: 2024-12-16 20:03+0000\n"
 "Last-Translator: Reuben Thomas <rrt@sc3d.org>\n"
 "Language: Greek\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: pygettext.py 1.5\n"
 
-#: mrmatt/mrmatt_game.py:54
+#: mrmatt/mrmatt_game.py:55
 #, fuzzy
 msgid "Collect all the food while digging through earth dodging rocks."
 msgstr ""
@@ -24,8 +24,7 @@ msgstr ""
 #. TRANSLATORS: Please keep this text wrapped to 43 characters. The font
 #. used in-game is lacking many glyphs, so please test it with your
 #. language and let me know if I need to add glyphs.
-#: mrmatt/mrmatt_game.py:62
-#, fuzzy
+#: mrmatt/mrmatt_game.py:63
 msgid ""
 "Collect all the apples on each level.\n"
 "Earth can be dug through; walls cannot.\n"
@@ -47,4 +46,8 @@ msgid ""
 " (choose with movement keys and digits)\n"
 "\n"
 "     Press the space bar to play!\n"
+msgstr ""
+
+#: mrmatt/mrmatt_game.py:286
+msgid "Moves"
 msgstr ""
