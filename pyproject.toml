@@ -1,6 +1,6 @@
 [project]
 name = "MrMatt"
-version = "0.9.13"
+version = "0.8"
 description = "Simple rocks-and-diamonds game"
 license = {text = "GPL v3 or later"}
 authors = [
@@ -10,7 +10,7 @@ readme = "README.md"
 urls = {Homepage = "https://github.com/rrthomas/mrmatt"}
 requires-python = ">= 3.11"
 dependencies = [
-    "chambercourt >= 0.9.13",
+    "chambercourt >= 0.9.18",
 ]
 classifiers = [
     "Environment :: X11 Applications",
